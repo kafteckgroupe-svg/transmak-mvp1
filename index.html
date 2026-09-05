@@ -4697,7 +4697,7 @@
           </div>
           <div class="tracking-side">
             <div style="font-family:var(--font-display); font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-500); margin-bottom:12px;">Chauffeur</div>
-            ${drv ? `<div class="driver-card"><div class="avatar">${escapeHtml(drv.firstName[0]+drv.lastName[0])}</div><div class="details"><div class="n">${escapeHtml(drv.firstName+' '+drv.lastName)}</div><div class="m">${escapeHtml(drv.phone)}</div></div><a href="tel:${drv.phone.replace(/ /g,'')}" class="call"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a></div>` : '<div style="padding:14px; background:var(--warn-100); border-radius:10px; color:var(--warn); font-size:12.5px;">En attente d\\'affectation</div>'}
+            ${drv ? `<div class="driver-card"><div class="avatar">${escapeHtml(drv.firstName[0]+drv.lastName[0])}</div><div class="details"><div class="n">${escapeHtml(drv.firstName+' '+drv.lastName)}</div><div class="m">${escapeHtml(drv.phone)}</div></div><a href="tel:${drv.phone.replace(/ /g,'')}" class="call"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a></div>` : '<div style="padding:14px; background:var(--warn-100); border-radius:10px; color:var(--warn); font-size:12.5px;">En attente d\'affectation</div>'}
             <div style="font-family:var(--font-display); font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-500); margin:20px 0 8px;">Progression</div>
             <div class="timeline">${tlRows}</div>
             ${o.status === 'delivered' ? `<div style="margin-top:20px; padding:14px; background:var(--ok-100); border-radius:10px; color:var(--ok); font-family:var(--font-display); font-weight:700; font-size:13px; text-align:center;">✓ Livraison confirmée</div>` : ''}
@@ -4732,7 +4732,7 @@
           <div class="confirmed-hero">
             <div class="check"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
             <h1>Commande ${o.code} créée</h1>
-            <p>${drv ? 'Nous avons envoyé la mission à '+escapeHtml(drv.firstName+' '+drv.lastName)+'. Vous serez notifié dès qu\\'il aura accepté.' : 'Nous cherchons un chauffeur disponible.'}</p>
+            <p>${drv ? 'Nous avons envoyé la mission à '+escapeHtml(drv.firstName+' '+drv.lastName)+'. Vous serez notifié dès qu\'il aura accepté.' : 'Nous cherchons un chauffeur disponible.'}</p>
           </div>
           <div class="otp-display">
             <div class="lbl">Code de livraison OTP</div>
@@ -4743,7 +4743,7 @@
             <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px;">
               <div><div style="font-size:11px; color:var(--ink-500); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; margin-bottom:4px;">Trajet</div><div style="font-family:var(--font-display); font-weight:700;">${escapeHtml((o.from.commune||'—')+' → '+(o.to.commune||'—'))}</div><div style="font-size:12px; color:var(--ink-500);">${o.distance} km</div></div>
               <div><div style="font-size:11px; color:var(--ink-500); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; margin-bottom:4px;">Prix</div><div style="font-family:var(--font-display); font-weight:700; font-size:18px;">${fmtDA(o.price.total)}</div></div>
-              <div><div style="font-size:11px; color:var(--ink-500); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; margin-bottom:4px;">Chauffeur</div><div>${drv ? escapeHtml(drv.firstName+' '+drv.lastName) : '<em style="color:var(--warn);">En cours d\\'affectation</em>'}</div></div>
+              <div><div style="font-size:11px; color:var(--ink-500); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; margin-bottom:4px;">Chauffeur</div><div>${drv ? escapeHtml(drv.firstName+' '+drv.lastName) : '<em style="color:var(--warn);">En cours d\'affectation</em>'}</div></div>
               <div><div style="font-size:11px; color:var(--ink-500); text-transform:uppercase; letter-spacing:0.06em; font-weight:600; margin-bottom:4px;">Camion</div><div>${t ? escapeHtml(t.code+' · '+TRUCK_TYPES.find(x=>x.id===t.type).label) : '—'}</div></div>
             </div>
           </div>
@@ -4765,7 +4765,7 @@
       } else if (active) {
         c.innerHTML = renderMissionBannerCard(active, false);
       } else {
-        c.innerHTML = '<div class="mission-banner" style="background:var(--ink-100); color:var(--ink-700);"><div class="icon-circ" style="background:rgba(0,0,0,0.05);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="txt"><div class="t" style="color:var(--ink-900);">Aucune mission en cours</div><div class="s" style="color:var(--ink-500);">Vous êtes disponible</div></div></div><div class="empty-state" style="padding:40px 20px;"><h3>Rien pour l\\'instant</h3><p>Une mission apparaîtra ici quand un client passera commande.</p></div>';
+        c.innerHTML = '<div class="mission-banner" style="background:var(--ink-100); color:var(--ink-700);"><div class="icon-circ" style="background:rgba(0,0,0,0.05);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="txt"><div class="t" style="color:var(--ink-900);">Aucune mission en cours</div><div class="s" style="color:var(--ink-500);">Vous êtes disponible</div></div></div><div class="empty-state" style="padding:40px 20px;"><h3>Rien pour l\'instant</h3><p>Une mission apparaîtra ici quand un client passera commande.</p></div>';
       }
     }
     function renderMissionBannerCard(o, isProposed) {
