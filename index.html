@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Trans MaK — Plateforme digitale de gestion et de suivi des transports (démo MVP1).">
+<meta name="description" content="Trans MaK — Plateforme digitale (démo MVP1 en format téléphone).">
 <style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
@@ -2225,6 +2225,261 @@
   /* focus visible */
   :focus-visible { outline: 2px solid var(--orange-600); outline-offset: 2px; border-radius: 4px; }
 
+  /* ============================================================ */
+  /* ============== PHONE FRAME WRAPPER ========================= */
+  /* ============================================================ */
+  body {
+    background: linear-gradient(135deg, #0A2540 0%, #123354 55%, #1E4976 100%);
+    min-height: 100vh;
+  }
+  :root:not([data-theme="light"]) body,
+  :root[data-theme="dark"] body {
+    background: linear-gradient(135deg, #050B14 0%, #0B141F 55%, #10202E 100%);
+  }
+
+  #phoneWrapper {
+    width: 100%;
+    background: var(--paper);
+    position: relative;
+    min-height: 100vh;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 30px 20px 60px;
+    }
+    #phoneWrapper {
+      width: 100%;
+      max-width: 440px;
+      min-height: 900px;
+      max-height: calc(100vh - 60px);
+      border-radius: 48px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 3px #0A2540,
+        0 0 0 12px #1C1C1E,
+        0 0 0 13px #2C2C2E,
+        0 50px 80px -20px rgba(0,0,0,0.55),
+        0 20px 40px -10px rgba(0,0,0,0.4);
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+    }
+    #phoneWrapper::-webkit-scrollbar { width: 3px; }
+    #phoneWrapper::-webkit-scrollbar-thumb { background: var(--ink-300); border-radius: 3px; }
+
+    /* Notch */
+    #phoneNotch {
+      position: fixed;
+      top: 30px; left: 50%;
+      transform: translateX(-50%);
+      width: 130px; height: 26px;
+      background: #1C1C1E;
+      border-radius: 0 0 18px 18px;
+      z-index: 9999;
+      pointer-events: none;
+    }
+    /* Speaker + camera in notch */
+    #phoneNotch::before {
+      content: "";
+      position: absolute;
+      top: 8px; left: 50%;
+      transform: translateX(-50%);
+      width: 40px; height: 5px;
+      background: #0a0a0a;
+      border-radius: 3px;
+    }
+    #phoneNotch::after {
+      content: "";
+      position: absolute;
+      top: 7px; right: 20px;
+      width: 7px; height: 7px;
+      background: #0a0a0a;
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 1px #2C2C2E;
+    }
+
+    /* Add top padding under notch */
+    #phoneWrapper > .app-chrome {
+      padding-top: 8px;
+    }
+
+    /* Toast overlay stays fixed to phone */
+    #toastStack {
+      position: fixed !important;
+      top: 60px !important;
+      right: 50% !important;
+      transform: translateX(220px);
+      max-width: 380px;
+    }
+  }
+
+  /* Adjust internal layouts to fit narrow phone width */
+  @media (max-width: 500px), (min-width: 768px) {
+    .chrome-bar {
+      padding: 10px 12px;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .demo-badge { display: none; }
+    .surface-switcher {
+      order: 3;
+      width: 100%;
+      overflow-x: auto;
+      justify-content: flex-start;
+    }
+    .surface-switcher button {
+      padding: 6px 10px;
+      font-size: 11.5px;
+      flex-shrink: 0;
+    }
+    .surface-switcher button .dot { display: none; }
+    .logo { font-size: 15px; }
+    .logo .mark { width: 28px; height: 28px; font-size: 12px; }
+    #sessionBox { font-size: 11px; }
+    #sessionBox .btn { padding: 5px 8px; font-size: 11px; }
+
+    /* Public site */
+    .public-header { padding: 16px 20px; flex-wrap: wrap; }
+    .public-nav { display: none; }
+    .public-header-cta { gap: 8px; }
+    .public-header-cta .btn-ghost { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 20px 20px 40px; gap: 30px; }
+    .hero-copy h1 { font-size: 34px; }
+    .hero-copy .sub { font-size: 15px; }
+    .hero-stats { flex-wrap: wrap; gap: 20px; padding-top: 20px; }
+    .hero-stats .stat .num { font-size: 22px; }
+    .hero-visual { aspect-ratio: 1 / 1; border-radius: 20px; }
+    .hero-card { padding: 10px 12px; }
+    .hero-card .val { font-size: 13px; }
+    .fleet-section { padding: 30px 20px; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+    .section-header h2 { font-size: 24px; }
+    .fleet-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .truck-card { padding: 16px 14px; }
+    .truck-illo { height: 60px; }
+    .truck-illo svg { width: 80px; height: 50px; }
+    .truck-card h3 { font-size: 15px; }
+    .truck-card p { font-size: 12px; }
+    .how-inner { padding: 40px 20px; }
+    .steps { grid-template-columns: 1fr; gap: 20px; }
+    .steps::before { display: none; }
+    .trust-section { grid-template-columns: 1fr; padding: 40px 20px; gap: 20px; }
+    .final-cta { padding: 30px 24px; margin: 0 20px 40px; flex-direction: column; align-items: flex-start; text-align: left; gap: 20px; }
+    .final-cta h2 { font-size: 22px; }
+    .final-cta .actions { width: 100%; flex-direction: column; }
+    .final-cta .actions .btn { width: 100%; }
+    .public-footer { padding: 24px 20px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; font-size: 12px; }
+    .footer-links { flex-wrap: wrap; gap: 16px; }
+
+    /* Client portal */
+    .portal-shell { padding: 16px 14px 40px; }
+    .portal-header { flex-direction: column; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
+    .portal-header > div:last-child { width: 100%; }
+    .portal-tabs { width: 100%; overflow-x: auto; }
+    .portal-tabs button { padding: 7px 12px; font-size: 12px; flex-shrink: 0; }
+    .order-wizard { grid-template-columns: 1fr; gap: 14px; }
+    .wizard-steps { position: static; padding: 14px; }
+    .wizard-steps ol { flex-direction: row; overflow-x: auto; }
+    .wizard-steps li { padding: 6px 10px; font-size: 12px; flex-shrink: 0; white-space: nowrap; }
+    .wizard-main { padding: 20px 18px; }
+    .wizard-main h2 { font-size: 20px; }
+    .form-row { grid-template-columns: 1fr; gap: 12px; margin-bottom: 12px; }
+    .truck-choice { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .price-summary { position: static; padding: 20px; }
+    .price-big { font-size: 32px; }
+    .tracking-shell { grid-template-columns: 1fr; gap: 14px; }
+    .tracking-summary { flex-direction: column; align-items: flex-start; gap: 14px; padding: 16px 18px; }
+    .tracking-summary h2 { font-size: 17px; }
+    .eta-box { gap: 16px; text-align: left; }
+    .tracking-side { padding: 18px; }
+    .transports-table th, .transports-table td { padding: 10px 12px; font-size: 12px; }
+    .transports-table th:nth-child(3), .transports-table td:nth-child(3) { display: none; }
+    .transports-table th:nth-child(4), .transports-table td:nth-child(4) { display: none; }
+    .transports-list { overflow-x: auto; }
+
+    /* Driver — remove double phone frame */
+    .driver-stage { grid-template-columns: 1fr; padding: 20px 16px 40px; gap: 20px; }
+    .driver-context { padding-top: 0; padding-left: 0; }
+    .driver-context h2 { font-size: 20px; }
+    .phone {
+      width: 100%; max-width: 380px; height: auto; min-height: 600px;
+      background: transparent; padding: 0; box-shadow: none; border-radius: 0;
+    }
+    .phone-notch { display: none; }
+    .phone-screen {
+      border-radius: 20px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--ink-200);
+    }
+    .phone-statusbar { display: none; }
+
+    /* Admin */
+    .admin-layout { grid-template-columns: 1fr; }
+    .admin-sidebar {
+      display: flex;
+      flex-direction: row;
+      padding: 8px 10px;
+      gap: 4px;
+      overflow-x: auto;
+      background: var(--navy-900);
+    }
+    .admin-sidebar .logo { display: none; }
+    .admin-sidebar .group-label { display: none; }
+    .admin-sidebar a {
+      flex-shrink: 0;
+      padding: 8px 12px;
+      font-size: 11.5px;
+      border-radius: 8px;
+      white-space: nowrap;
+    }
+    .admin-sidebar a.active { box-shadow: none; background: rgba(242,100,25,0.2); }
+    .admin-sidebar a svg { width: 14px; height: 14px; }
+    .admin-sidebar > div:last-child { display: none; }
+    .admin-content { padding: 16px 14px 40px; }
+    .admin-top { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .admin-top .title-block h1 { font-size: 22px; }
+    .admin-top > div:last-child { width: 100%; flex-wrap: wrap; gap: 8px; }
+    .admin-search { width: 100%; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .kpi-card { padding: 16px 14px; }
+    .kpi-card .value { font-size: 22px; }
+    .admin-row-1 { grid-template-columns: 1fr; gap: 14px; }
+    .card { padding: 16px 14px; }
+    .card-title h3 { font-size: 14px; }
+    .fleet-map { aspect-ratio: 4 / 3; }
+    .lm-item { padding: 12px; grid-template-columns: 40px 1fr; }
+    .lm-item .pill { grid-column: 2; justify-self: start; margin-top: 4px; }
+    .orders-table th, .orders-table td { padding: 10px; font-size: 11.5px; }
+    .orders-table th:nth-child(3), .orders-table td:nth-child(3) { display: none; }
+    .orders-table th:nth-child(4), .orders-table td:nth-child(4) { display: none; }
+    /* Facturation */
+    .fact-layout { grid-template-columns: 1fr; }
+    .invoice-panel { position: static; }
+    .invoice-page { padding: 20px 16px; }
+    .invoice-header { flex-direction: column; align-items: flex-start; gap: 14px; padding-bottom: 14px; }
+    .invoice-title { text-align: left; }
+    .invoice-meta { grid-template-columns: 1fr; gap: 14px; }
+    .invoice-dates { flex-wrap: wrap; gap: 10px; }
+    .invoice-dates .cell { min-width: 40%; }
+    .invoice-footer { grid-template-columns: 1fr; gap: 14px; }
+    .fact-toolbar .filters { overflow-x: auto; flex-wrap: nowrap; }
+    .fact-chip { flex-shrink: 0; font-size: 11px; padding: 5px 10px; }
+    .fact-table th, .fact-table td { padding: 8px 10px; font-size: 11px; }
+    .fact-table th:nth-child(3), .fact-table td:nth-child(3),
+    .fact-table th:nth-child(4), .fact-table td:nth-child(4),
+    .fact-table th:nth-child(5), .fact-table td:nth-child(5) { display: none; }
+    .invoice-stamp { top: 40px; right: 20px; font-size: 14px; padding: 6px 12px; }
+    /* Auth cards */
+    .auth-card { padding: 24px 20px; }
+    .wf-shell { padding: 16px; }
+    .otp-input input { width: 48px; height: 60px; font-size: 26px; }
+  }
+
   /* responsive fallback */
   @media (max-width: 1100px) {
     .hero { grid-template-columns: 1fr; }
@@ -2243,6 +2498,8 @@
   }
 </style>
 
+<div id="phoneNotch"></div>
+<div id="phoneWrapper">
 <div class="app-chrome">
   <div class="chrome-bar">
     <div style="display:flex; align-items:center; gap:20px;">
@@ -4041,6 +4298,7 @@
 </section>
 
 </main>
+</div><!-- /#phoneWrapper -->
 
 <!-- ============ TOAST CONTAINER ============ -->
 <div id="toastStack" style="position:fixed; top:20px; right:20px; z-index:9999; display:flex; flex-direction:column; gap:10px; pointer-events:none;"></div>
