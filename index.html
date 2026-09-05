@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Trans MaK — Plateforme digitale (démo MVP1 avec toggle téléphone / plein écran).">
+<meta name="description" content="Trans MaK — Plateforme digitale (démo MVP1).">
 <style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
@@ -2228,6 +2228,7 @@
   /* ============================================================ */
   /* ============== PHONE FRAME WRAPPER ========================= */
   /* ============================================================ */
+  html, body { overflow-x: hidden; max-width: 100vw; }
   body {
     background: linear-gradient(135deg, #0A2540 0%, #123354 55%, #1E4976 100%);
     min-height: 100vh;
@@ -2428,27 +2429,48 @@
     }
     .phone-statusbar { display: none; }
 
-    /* Admin */
+    /* Admin — bottom-nav style grid, all items visible, no horizontal scroll */
     .admin-layout { grid-template-columns: 1fr; }
     .admin-sidebar {
-      display: flex;
-      flex-direction: row;
-      padding: 8px 10px;
-      gap: 4px;
-      overflow-x: auto;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      padding: 8px 6px;
+      gap: 3px;
       background: var(--navy-900);
+      overflow: hidden;
     }
     .admin-sidebar .logo { display: none; }
     .admin-sidebar .group-label { display: none; }
     .admin-sidebar a {
-      flex-shrink: 0;
-      padding: 8px 12px;
-      font-size: 11.5px;
-      border-radius: 8px;
-      white-space: nowrap;
+      flex-direction: column;
+      padding: 6px 2px;
+      font-size: 9.5px;
+      border-radius: 6px;
+      text-align: center;
+      gap: 3px;
+      line-height: 1.15;
+      min-height: 46px;
+      justify-content: center;
+      position: relative;
+      color: rgba(255,255,255,0.75);
     }
-    .admin-sidebar a.active { box-shadow: none; background: rgba(242,100,25,0.2); }
-    .admin-sidebar a svg { width: 14px; height: 14px; }
+    .admin-sidebar a.active {
+      box-shadow: none;
+      background: rgba(242,100,25,0.2);
+      color: #fff;
+    }
+    .admin-sidebar a svg { width: 16px; height: 16px; margin: 0; }
+    .admin-sidebar a .badge {
+      position: absolute;
+      top: 2px; right: 2px;
+      margin: 0;
+      padding: 0 4px;
+      min-width: 14px;
+      height: 14px;
+      font-size: 9px;
+      line-height: 14px;
+      text-align: center;
+    }
     .admin-sidebar > div:last-child { display: none; }
     .admin-content { padding: 16px 14px 40px; }
     .admin-top { flex-direction: column; align-items: flex-start; gap: 14px; }
@@ -3564,7 +3586,7 @@
       <div class="group-label">Pilotage</div>
       <a href="#" class="active" data-av="dashboard">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
-        Tableau de bord
+        Dashboard
       </a>
       <a href="#" data-av="gps">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -3578,7 +3600,7 @@
       <div class="group-label">Ressources</div>
       <a href="#" data-av="fleet">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        Chauffeurs & Camions
+        Flotte
       </a>
       <a href="#" data-av="clients">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
